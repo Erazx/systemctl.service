@@ -1,0 +1,13 @@
+[Unit]
+Description=A centralized service for maintaining configuration information, naming, providing distributed synchronization, and providing group services
+
+[Service]
+Type=forking
+Environment="PREFIX=/usr/local/zookeeper-3.4.6"
+ExecStart=/usr/local/zookeeper-3.4.6/bin/zkServer.sh start ${PREFIX}/conf/zoo_%i.cfg
+ExecReload=/usr/local/zookeeper-3.4.6/bin/zkServer.sh restart ${PREFIX}/conf/zoo_%i.cfg
+ExecStop=/usr/local/zookeeper-3.4.6/bin/zkServer.sh stop ${PREFIX}/conf/zoo_%i.cfg
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
